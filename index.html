@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Operations handover for the Walnut secure examination platform: every screen, who may open it, and how a paper reaches release." />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Walnut Exam Platform — Operations Handover</title>
+<style>
+  :root {
+    --accent:        #2B3A78;
+    --accent-lift:   #4C5FD5;
+    --ground:        #FAFAFC;
+    --raise:         #FFFFFF;
+    --edge:          #E2E3EC;
+    --ink:           #14172A;
+    --ink-soft:      #4E536B;
+    --ink-faint:     #797F9A;
+    --ok:            #1B6F47;
+    --ok-bg:         #E7F4EC;
+    --warn:          #8A5A0C;
+    --warn-bg:       #FBF1DF;
+    --stop:          #9E2B26;
+    --stop-bg:       #FBEAE9;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent:      #8E9CF0;
+      --accent-lift: #AEB9FF;
+      --ground:      #0D101E;
+      --raise:       #161A2C;
+      --edge:        #262B42;
+      --ink:         #E8EAF4;
+      --ink-soft:    #A6ACC6;
+      --ink-faint:   #757C9B;
+      --ok:          #6FD69F;
+      --ok-bg:       #12301F;
+      --warn:        #E5B35F;
+      --warn-bg:     #33260E;
+      --stop:        #F09490;
+      --stop-bg:     #341614;
+    }
+  }
+  :root[data-theme="dark"] {
+    --accent:      #8E9CF0;
+    --accent-lift: #AEB9FF;
+    --ground:      #0D101E;
+    --raise:       #161A2C;
+    --edge:        #262B42;
+    --ink:         #E8EAF4;
+    --ink-soft:    #A6ACC6;
+    --ink-faint:   #757C9B;
+    --ok:          #6FD69F;
+    --ok-bg:       #12301F;
+    --warn:        #E5B35F;
+    --warn-bg:     #33260E;
+    --stop:        #F09490;
+    --stop-bg:     #341614;
+  }
+  :root[data-theme="light"] {
+    --accent:      #2B3A78;
+    --accent-lift: #4C5FD5;
+    --ground:      #FAFAFC;
+    --raise:       #FFFFFF;
+    --edge:        #E2E3EC;
+    --ink:         #14172A;
+    --ink-soft:    #4E536B;
+    --ink-faint:   #797F9A;
+    --ok:          #1B6F47;
+    --ok-bg:       #E7F4EC;
+    --warn:        #8A5A0C;
+    --warn-bg:     #FBF1DF;
+    --stop:        #9E2B26;
+    --stop-bg:     #FBEAE9;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 40px 24px 96px; }
+  .cols { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 48px; align-items: start; }
+  @media (max-width: 900px) { .cols { grid-template-columns: 1fr; gap: 28px; } nav.toc { position: static !important; } }
+
+  header.mast { border-bottom: 2px solid var(--ink); padding-bottom: 22px; margin-bottom: 20px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 10px;
+  }
+  h1 { font-size: clamp(28px, 4.6vw, 44px); line-height: 1.08; letter-spacing: -.022em; margin: 0 0 12px; text-wrap: balance; font-weight: 700; }
+  .standfirst { font-size: 17px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
+  .stamp { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 14px; }
+
+  nav.toc { position: sticky; top: 24px; font-size: 13.5px; }
+  nav.toc p { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; counter-reset: t; }
+  nav.toc a { color: var(--ink-soft); text-decoration: none; border-left: 2px solid var(--edge); padding-left: 11px; display: block; }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--accent); }
+
+  section { margin: 0 0 52px; scroll-margin-top: 20px; }
+  h2 {
+    font-size: 12px; font-family: var(--mono); letter-spacing: .13em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--edge);
+    font-weight: 600;
+  }
+  h3 { font-size: 17.5px; letter-spacing: -.01em; margin: 26px 0 8px; font-weight: 650; }
+  p { margin: 0 0 13px; max-width: 68ch; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-lift); outline-offset: 2px; }
+  code { font-family: var(--mono); font-size: .875em; background: var(--raise); border: 1px solid var(--edge); border-radius: 4px; padding: .1em .35em; }
+  strong { font-weight: 650; }
+
+  /* A route you can actually open, as opposed to one you have to retype. */
+  a.route {
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    text-decoration: none; border-bottom: 1px solid var(--edge);
+    padding-bottom: 1px; white-space: nowrap;
+  }
+  a.route:hover, a.route:focus-visible { border-bottom-color: var(--accent); color: var(--accent-lift); }
+  a.route::after { content: " ↗"; font-size: .8em; color: var(--ink-faint); }
+  .who a.route { font-size: 11.5px; letter-spacing: .04em; }
+
+  .status { display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px; margin: 0 0 34px; }
+  .tile { background: var(--raise); border: 1px solid var(--edge); border-radius: 9px; padding: 13px 15px; }
+  .tile .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .tile .v { font-size: 21px; font-weight: 650; letter-spacing: -.02em; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .tile .n { font-size: 12.5px; color: var(--ink-soft); margin-top: 1px; }
+
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
+  .p-ok { background: var(--ok-bg); color: var(--ok); }
+  .p-warn { background: var(--warn-bg); color: var(--warn); }
+  .p-stop { background: var(--stop-bg); color: var(--stop); }
+
+  .scroll { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--edge); border-radius: 9px; background: var(--raise); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--edge); vertical-align: top; }
+  th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td.m, th.m { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+
+  pre { font-family: var(--mono); font-size: 13px; line-height: 1.55; background: var(--raise); border: 1px solid var(--edge); border-radius: 9px; padding: 14px 16px; overflow-x: auto; margin: 0 0 16px; }
+  pre .c { color: var(--ink-faint); }
+  pre .g { color: var(--ok); font-weight: 600; }
+
+  .note { border-left: 3px solid var(--accent); background: var(--raise); border-radius: 0 9px 9px 0; padding: 13px 16px; margin: 0 0 16px; }
+  .note.stop { border-left-color: var(--stop); }
+  .note.warn { border-left-color: var(--warn); }
+  .note p:last-child { margin-bottom: 0; }
+  .note .h { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 5px; }
+
+  ul.plain { margin: 0 0 14px; padding-left: 19px; }
+  ul.plain li { margin-bottom: 6px; max-width: 66ch; }
+
+  .chain { display: flex; flex-direction: column; gap: 0; margin: 0 0 18px; }
+  .step { display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 14px; }
+  .rail { display: flex; flex-direction: column; align-items: center; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--accent); background: var(--ground); margin-top: 7px; flex: none; }
+  .dot.done { background: var(--accent); }
+  .dot.gap { border-color: var(--stop); background: var(--stop-bg); }
+  .line { width: 2px; flex: 1; background: var(--edge); min-height: 14px; }
+  .step .body { padding-bottom: 16px; }
+  .step .t { font-weight: 650; font-size: 15.5px; }
+  .step .who { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); letter-spacing: .04em; }
+  .step .d { font-size: 14px; color: var(--ink-soft); margin-top: 3px; max-width: 62ch; }
+
+  footer { border-top: 1px solid var(--edge); margin-top: 12px; padding-top: 18px; font-size: 13px; color: var(--ink-faint); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">Operations handover</p>
+    <h1>Walnut — secure examination platform</h1>
+    <p class="standfirst">
+      Every screen, who may open it, and how a paper travels from an empty exam to a released,
+      dual-signed set. This page carries <strong>no passwords</strong> — see Access below.
+    </p>
+    <p class="stamp"><a class="route" href="https://exams.collegeranger.com/">exams.collegeranger.com</a> · last verified 7 September 2026</p>
+  </header>
+
+  <div class="cols">
+    <nav class="toc">
+      <p>Contents</p>
+      <ol>
+        <li><a href="#status">Status</a></li>
+        <li><a href="#access">Access &amp; credentials</a></li>
+        <li><a href="#roles">Roles</a></li>
+        <li><a href="#paper">Making a paper</a></li>
+        <li><a href="#admissions">Admissions</a></li>
+        <li><a href="#mail">Email</a></li>
+        <li><a href="#server">Server</a></li>
+        <li><a href="#open">Outstanding</a></li>
+        <li><a href="#never">Do not</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section id="status">
+        <h2>Status</h2>
+        <div class="status">
+          <div class="tile"><div class="k">Platform</div><div class="v">Live</div><div class="n">11 services, one unit</div></div>
+          <div class="tile"><div class="k">Outbound email</div><div class="v">Working</div><div class="n">dkim · spf · dmarc pass</div></div>
+          <div class="tile"><div class="k">Paper pipeline</div><div class="v">Proved</div><div class="n">1 set, dual-signed</div></div>
+          <div class="tile"><div class="k">Live video</div><div class="v">Off</div><div class="n">needs a second node</div></div>
+        </div>
+        <p>
+          The platform has been sat end to end in a browser. What has <em>not</em> been proved with a
+          human at a real webcam is face match, liveness and room scan — the automated tests use a
+          synthetic camera, so those must never be reported as passing.
+        </p>
+      </section>
+
+      <section id="access">
+        <h2>Access &amp; credentials</h2>
+        <p>Three separate doors. A candidate arriving at the platform sees no trace that a staff area exists.</p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Door</th><th>Who</th><th>Leads to</th></tr></thead>
+            <tbody>
+              <tr><td><a class="route" href="https://exams.collegeranger.com/sign-in">/sign-in</a></td><td>Candidates only</td><td>Dashboard, lobby, exam</td></tr>
+              <tr><td><a class="route" href="https://exams.collegeranger.com/staff/sign-in">/staff/sign-in</a></td><td>Proctors</td><td>Hall console, verification, incidents</td></tr>
+              <tr><td><a class="route" href="https://exams.collegeranger.com/admin/sign-in">/admin/sign-in</a></td><td>Faculty · Controller · Command</td><td>One console at <a class="route" href="https://exams.collegeranger.com/admin">/admin</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note stop">
+          <p class="h">Credentials are deliberately not on this page</p>
+          <p>
+            Staff sign-in is password <em>plus</em> a TOTP second factor. Publishing both together
+            anywhere world-readable would hand over the whole estate — releasing papers, reading
+            candidates' Aadhaar records, the audit trail. They live in
+            <code>~/Desktop/Walnut-Exam-Platform.xlsx</code> and on the server at
+            <code>services/modules/identity/.seed-credentials.json</code> (mode 0600, git-ignored).
+          </p>
+        </div>
+      </section>
+
+      <section id="roles">
+        <h2>Roles</h2>
+        <p>
+          Nine permissions are held by exactly one role each, and that is asserted by a test rather
+          than a convention. No role can both author a question and authorise its release.
+        </p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Role</th><th>Can</th><th>Cannot</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Faculty</strong> <span class="pill p-ok">setter</span></td><td>Author questions, upload material, evaluate scripts</td><td>Assemble or release a paper</td></tr>
+              <tr><td><strong>Controller</strong></td><td>Create exams, allocate work, assemble sets, sign a release</td><td>Author a question; sign the same set twice</td></tr>
+              <tr><td><strong>Command</strong></td><td>Admissions, centres, live picture, audit trail</td><td>Author, assemble or release anything</td></tr>
+              <tr><td><strong>Proctor</strong></td><td>Verify identity, clear or refuse entry, file incidents</td><td>See a paper; open a candidate session</td></tr>
+              <tr><td><strong>Candidate</strong></td><td>Sit the exam</td><td>Everything else</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="paper">
+        <h2>Making a paper</h2>
+        <p>
+          Six steps across two roles. Sign in at <a class="route" href="https://exams.collegeranger.com/admin/sign-in">/admin/sign-in</a> for all of them.
+          The order matters: a set cannot be assembled before questions exist, and cannot be
+          released until two <em>different</em> controllers have signed it.
+        </p>
+
+        <div class="chain">
+          <div class="step">
+            <div class="rail"><div class="dot gap"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Create the exam <span class="pill p-stop">no screen yet</span></div>
+              <div class="who">controller</div>
+              <div class="d">
+                The API exists and is correctly scoped, but nothing in the interface calls it —
+                today an exam is created by running <code>seed-exam.mjs</code>. This is the only
+                step in the chain with no front door.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Allocate outcomes to setters</div>
+              <div class="who">controller · <a class="route" href="https://exams.collegeranger.com/faculty/allocation">/faculty/allocation</a></div>
+              <div class="d">
+                Tell a named setter to write N questions for a course outcome by a date. Progress is
+                counted from questions that actually exist, not from a status somebody remembers to update.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Author the questions</div>
+              <div class="who">faculty · <a class="route" href="https://exams.collegeranger.com/faculty/question-new">/faculty/question-new</a> · <a class="route" href="https://exams.collegeranger.com/faculty/question-bank">/faculty/question-bank</a></div>
+              <div class="d">Fifteen question types. A setter reads back only their own questions.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Or generate them from source material</div>
+              <div class="who">faculty · <a class="route" href="https://exams.collegeranger.com/faculty/question-generate">/faculty/question-generate</a></div>
+              <div class="d">
+                Drafts land in the same question bank and follow the same approval path. The generator
+                requires the same signed permission as writing one by hand.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Assemble a set</div>
+              <div class="who">controller · <a class="route" href="https://exams.collegeranger.com/faculty/sets">/faculty/sets</a></div>
+              <div class="d">
+                The assembler chooses against a blueprint and sees question attributes only — no stem,
+                no options, no marking key. Sets are encrypted at rest.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div></div>
+            <div class="body">
+              <div class="t">Two controllers sign, then release</div>
+              <div class="who">controller ×2 · <a class="route" href="https://exams.collegeranger.com/controller/paper-release">/controller/paper-release</a></div>
+              <div class="d">
+                Sign in as the first controller and sign; sign out; sign in as the second and sign.
+                One person cannot do both — refused at the interface, at the API, and by an
+                append-only trigger in the database.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>What already exists on the server</h3>
+        <pre>exam 1  End Semester Examination — Winter 2026   <span class="g">live</span>
+set  1  exam 1 · 12 items                        <span class="g">released</span>
+        <span class="c">slot 1</span>  Dr. Anjali Mehta    "Reviewed against the blueprint."
+        <span class="c">slot 2</span>  Prof. Harish Menon  "Independently checked. Approved."</pre>
+        <div class="note warn">
+          <p class="h">Before you experiment</p>
+          <p>
+            Only one set may be released per exam — a second released set breaks paper serving. Exam 1
+            already has one. To exercise the flow, create a fresh exam rather than assembling a second
+            set against the live one.
+          </p>
+        </div>
+      </section>
+
+      <section id="admissions">
+        <h2>Admissions</h2>
+        <p>
+          Invite-only, by design: a public form on an exam platform collects applications from anyone,
+          which means duplicate identities and a moderation queue nobody is staffed to run.
+        </p>
+        <div class="chain">
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">Add the candidate and send the link</div>
+              <div class="who">command · <a class="route" href="https://exams.collegeranger.com/command/admissions">/command/admissions</a></div>
+              <div class="d">A single-use link is emailed. Only its hash is stored, so a database backup contains no working links.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div><div class="line"></div></div>
+            <div class="body">
+              <div class="t">The candidate applies</div>
+              <div class="who">public · /apply/&lt;token&gt;</div>
+              <div class="d">
+                Four steps: details, a photograph of their ID, a live photograph of their face with
+                head turns, then send. Both photo steps offer the camera <em>and</em> a file, because
+                a laptop browser ignores the camera hint a phone honours.
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="rail"><div class="dot done"></div></div>
+            <div class="body">
+              <div class="t">A person approves it</div>
+              <div class="who">command · /command/admissions/&lt;id&gt;</div>
+              <div class="d">
+                The device's face-match score is recorded and shown, and decides nothing — every
+                approval names a human. Approval, roster hand-off and email are reported separately,
+                so a bounced email never un-approves anybody.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="mail">
+        <h2>Email</h2>
+        <p>
+          Sent through Brevo over SMTP, from <code>code-support@collegeranger.com</code>, which forwards
+          to a real inbox so replies reach a person. Proved by the headers of a delivered message, not
+          by a log line:
+        </p>
+        <pre>Authentication-Results: mx.google.com;
+   dkim=<span class="g">pass</span>  header.i=@collegeranger.com header.s=brevo2
+   spf=<span class="g">pass</span>   smtp.mailfrom=bounces-…@mail.collegeranger.com
+   dmarc=<span class="g">pass</span> header.from=collegeranger.com</pre>
+        <ul class="plain">
+          <li>SPF is aligned to <code>collegeranger.com</code>, not to Brevo, because the branded sending subdomain is <code>mail</code>.</li>
+          <li>The branded subdomain must never be <code>exams</code> — that name is the live site's own record, and a tracking CNAME there would take the platform offline.</li>
+          <li>Link tracking is switched off in code (<a class="route" href="https://app.brevo.com/transactional/email/settings">Brevo transactional settings</a>). Brevo rewrites links through a host whose certificate is issued for a different domain and expired, which met candidates with a browser security warning.</li>
+          <li>Namecheap appends the domain to whatever you type: the host field takes <code>mail</code>, never <code>mail.collegeranger.com</code>.</li>
+        </ul>
+      </section>
+
+      <section id="server">
+        <h2>Server</h2>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Item</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Host</td><td class="m">Oracle Cloud · Ampere A1 arm64 · 1 OCPU / 6 GB</td></tr>
+              <tr><td>System</td><td class="m">Ubuntu 22.04 · PostgreSQL 16 · Redis · Node 22 · nginx</td></tr>
+              <tr><td>Application</td><td class="m">/opt/walnut · web root /opt/walnut/web/browser</td></tr>
+              <tr><td>Restart</td><td class="m">sudo systemctl restart walnut</td></tr>
+              <tr><td>Logs</td><td class="m">tail -f /var/log/walnut.log</td></tr>
+              <tr><td>Database</td><td class="m">database <code>walnut</code>, 14 schemas — not <code>postgres</code></td></tr>
+              <tr><td>Certificate</td><td class="m">Let's Encrypt, renews itself</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          One CPU means roughly one to two sign-ins per second, so six hundred candidates take five to
+          ten minutes to all get in. Fine for a pilot; worth raising the shape before a full sitting.
+        </p>
+      </section>
+
+      <section id="open">
+        <h2>Outstanding</h2>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>What</th><th>Why it matters</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Screen to create an exam</td><td>The only step in the paper chain with no interface</td><td><span class="pill p-stop">gap</span></td></tr>
+              <tr><td>Rotate the SMTP key</td><td>It has been pasted into a chat</td><td><span class="pill p-warn">hygiene</span></td></tr>
+              <tr><td>Push the branch</td><td>59 commits exist on one laptop only</td><td><span class="pill p-warn">risk</span></td></tr>
+              <tr><td>An enrolled photograph</td><td>Proctors are asked to compare against one that no service holds</td><td><span class="pill p-warn">gap</span></td></tr>
+              <tr><td>Second node for video</td><td>Live invigilation video cannot run on one box</td><td><span class="pill p-warn">blocked</span></td></tr>
+              <tr><td>Short link domain</td><td>The SMS invite now spans two segments instead of one</td><td><span class="pill p-warn">cost</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="never">
+        <h2>Do not</h2>
+        <ul class="plain">
+          <li><strong>Do not let a second controller sign a test set.</strong> Two released sets for one exam breaks paper serving.</li>
+          <li><strong>Do not enable the walkthrough account on the server.</strong> It can assume every role in turn; it is unreachable there by construction and must stay so.</li>
+          <li><strong>Do not weaken a separation rule to make something pass.</strong> If that seems necessary, the approach is wrong.</li>
+          <li><strong>Do not renumber the two migrations that share number 0020.</strong> Both are applied; the next free number is 0024.</li>
+          <li><strong>Do not report face match, liveness or room scan as tested.</strong> They have only ever run against a synthetic camera.</li>
+        </ul>
+      </section>
+
+      <footer>
+        Walnut secure examination platform · operations handover · verified 7 September 2026.
+        Credentials are held separately and are not published here.
+      </footer>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
