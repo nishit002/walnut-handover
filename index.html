@@ -187,7 +187,7 @@
     <h1>Walnut — secure examination platform</h1>
     <p class="standfirst">
       Every screen, who may open it, and how a paper travels from an empty exam to a released,
-      dual-signed set. This page carries <strong>no passwords</strong> — see Access below.
+      dual-signed set. Demonstration credentials are included below — this is a seeded pilot system, and they must be rotated before real candidates use it.
     </p>
     <p class="stamp"><a class="route" href="https://exams.collegeranger.com/">exams.collegeranger.com</a> · last verified 7 September 2026</p>
   </header>
@@ -197,7 +197,8 @@
       <p>Contents</p>
       <ol>
         <li><a href="#status">Status</a></li>
-        <li><a href="#access">Access &amp; credentials</a></li>
+        <li><a href="#access">Access</a></li>
+        <li><a href="#creds">Credentials</a></li>
         <li><a href="#roles">Roles</a></li>
         <li><a href="#paper">Making a paper</a></li>
         <li><a href="#admissions">Admissions</a></li>
@@ -237,17 +238,120 @@
             </tbody>
           </table>
         </div>
-        <div class="note stop">
-          <p class="h">Credentials are deliberately not on this page</p>
+        <div class="note warn">
+          <p class="h">These are demonstration accounts</p>
           <p>
-            Staff sign-in is password <em>plus</em> a TOTP second factor. Publishing both together
-            anywhere world-readable would hand over the whole estate — releasing papers, reading
-            candidates' Aadhaar records, the audit trail. They live in
-            <code>~/Desktop/Walnut-Exam-Platform.xlsx</code> and on the server at
-            <code>services/modules/identity/.seed-credentials.json</code> (mode 0600, git-ignored).
+            The platform is seeded with fixture candidates and one rehearsal exam, so every account
+            below is a demonstration account. <strong>Rotate all of them, and take this page down,
+            before a real candidate sits an exam</strong> — staff sign-in is a password
+            <em>and</em> a second factor, so the pair together opens the whole estate.
           </p>
         </div>
       </section>
+
+      <section id="creds">
+        <h2>Credentials</h2>
+        <p>
+          Staff accounts ask for a six-digit code after the password. Add the
+          <em>authenticator key</em> to any authenticator app once — Google Authenticator,
+          1Password, Authy — and it will generate those codes from then on.
+        </p>
+
+        <div class="note">
+          <p class="h">There is no single master account, and that is the design</p>
+          <p>
+            One credential that could do everything would have to hold both halves of the dual
+            control, which is the property the platform exists to prove. To walk the whole flow you
+            sign in as each role in turn — and the most convincing part of a demonstration is
+            watching one controller fail to release a paper alone.
+          </p>
+        </div>
+
+        <h3>Command — admissions, centres, the live picture, the audit trail</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Sign in at</th><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><a class="route" href="https://exams.collegeranger.com/admin/sign-in">/admin/sign-in</a></td>
+                <td class="m">command@walnut.exam</td>
+                <td class="m">HX452-GGR8Y-XNA4U</td>
+                <td class="m">NYKFCO45BA4U22UO3U6YOGXS64XWUS7R</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Controllers — a release needs both of them</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Who</th><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Anjali Mehta</td><td class="m">controller1@walnut.exam</td><td class="m">LC3T9-CABCV-LXMWZ</td><td class="m">ZG7XBLUUDUL7DTC3CCWYHJMBBDM6KUBW</td></tr>
+              <tr><td>Prof. Harish Menon</td><td class="m">controller2@walnut.exam</td><td class="m">WLUG8-GUDRC-W88SR</td><td class="m">CGMNO3GUNJJBFSQMYCWUCFT5NP2FF3TY</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Sign in as the first, assemble the set and sign it; sign out; sign in as the second and
+          sign again. One person cannot cast both signatures — it is refused at the screen, at the
+          API, and by a trigger in the database.
+        </p>
+
+        <h3>Faculty — setters, who author questions</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr><td class="m">setter1@walnut.exam</td><td class="m">FZA3D-GZ4DY-LLELM</td><td class="m">FXOC7IECRNWHEON5ZGUO3VJJLXHY4MCL</td></tr>
+              <tr><td class="m">setter2@walnut.exam</td><td class="m">E3G94-23DG9-B3Q34</td><td class="m">W5XIWIPQB27LEJLESKCI5AZO2NDJ7224</td></tr>
+              <tr><td class="m">setter3@walnut.exam</td><td class="m">2JJE9-A9SP9-76FQW</td><td class="m">OBOLQGZIRKJP53JNH3JTAVD57AYJBZRU</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Faculty — examiners, who mark scripts</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Who</th><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Meenakshi Iyer</td><td class="m">examiner1@walnut.exam</td><td class="m">YQ2KG-5VYEX-TUDSQ</td><td class="m">ELY4KWLN3P2SEWXR2HJFHLJCDNHTWRSV</td></tr>
+              <tr><td>Dr. Arun Sengupta</td><td class="m">examiner2@walnut.exam</td><td class="m">PL2RS-WJF7J-NNL6P</td><td class="m">EVFP2ECB47ZOFHGYKUN4OVPM6CLHL56J</td></tr>
+              <tr><td>Dr. Fatima Bano</td><td class="m">examiner3@walnut.exam</td><td class="m">TBEAZ-D4TRM-UPRZK</td><td class="m">HAXC2NEMYKLJBHMC77PLZ4CXZKGC6Y4I</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Proctors — the hall</h3>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Sign in at</th><th>Who</th><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><a class="route" href="https://exams.collegeranger.com/staff/sign-in">/staff/sign-in</a></td>
+                <td>Nilesh Shah · Ahmedabad</td>
+                <td class="m">proctor.amd01@walnut.exam</td><td class="m">JSDST-EFYMF-JECC4</td><td class="m">C23QWAS2XOOQVLTERFS7XIR4GD7WLPTO</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Anand Tripathi · Lucknow</td>
+                <td class="m">proctor.lko01@walnut.exam</td><td class="m">UL3EE-EF6KJ-KUWYF</td><td class="m">RH4ZLOETWCG3552UH6MOJHHY3C4RI42J</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ten proctors are seeded, one for each centre; the remaining eight are held on the server.</p>
+
+        <div class="note stop">
+          <p class="h">Two things are deliberately not on this page</p>
+          <p>
+            The mail relay password and the server login. Neither stops at the demonstration — one
+            would let a stranger send email as this domain, the other hands over the machine itself.
+            They stay offline with the operator.
+          </p>
+        </div>
+      </section>
+
 
       <section id="roles">
         <h2>Roles</h2>
@@ -473,7 +577,7 @@ set  1  exam 1 · 12 items                        <span class="g">released</span
 
       <footer>
         Walnut secure examination platform · operations handover · verified 7 September 2026.
-        Credentials are held separately and are not published here.
+        Demonstration credentials only — rotate them before real candidates sit an exam.
       </footer>
     </main>
   </div>
