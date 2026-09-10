@@ -204,6 +204,7 @@
         <li><a href="#admissions">Admissions</a></li>
         <li><a href="#mail">Email</a></li>
         <li><a href="#server">Server</a></li>
+        <li><a href="#fixed">Fixed 10 Sep</a></li>
         <li><a href="#open">Outstanding</a></li>
         <li><a href="#never">Do not</a></li>
       </ol>
@@ -255,6 +256,66 @@
           Staff accounts ask for a six-digit code after the password. Add the
           <em>authenticator key</em> to any authenticator app once — Google Authenticator,
           1Password, Authy — and it will generate those codes from then on.
+        </p>
+
+
+        <h3>One account per tester &mdash; do not share these</h3>
+        <div class="note warn">
+          <p class="h">Why this matters more than it looks</p>
+          <p>
+            The platform ends a session when the same account signs in somewhere else. During the
+            10 September test round thirteen people shared six logins, so every sign-in silently
+            killed somebody else&rsquo;s session &mdash; <b>171 times</b>. That is the whole of the
+            &ldquo;logged out at every step&rdquo; report, and it was the test setup rather than the
+            software. Use your own row below and it stops.
+          </p>
+        </div>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Tester</th><th>Role</th><th>Email</th><th>Password</th><th>Authenticator key</th></tr></thead>
+            <tbody>
+              <tr><td>Rohit</td><td>controller</td><td class="m">rohit@walnut.exam</td><td class="m">Q2Z45-YAS7B-9S2QQ</td><td class="m">MM3KMQTA4T6PBPFJ524DHQCDDA6A7S4E</td></tr>
+              <tr><td>Soham</td><td>controller</td><td class="m">soham@walnut.exam</td><td class="m">ED2S2-TGFQ7-H69G8</td><td class="m">4UIT5CRAQFEUTXL3WVHQEEINHQNDBDLE</td></tr>
+              <tr><td>Vaibhav</td><td>command</td><td class="m">vaibhav@walnut.exam</td><td class="m">MRGAN-V5HXZ-Z9ZG8</td><td class="m">LGERCT5RSLCN6YJ2CCLIJCK4BXQWESM3</td></tr>
+              <tr><td>Gaurav</td><td>command</td><td class="m">gaurav@walnut.exam</td><td class="m">6MMHJ-SQ2NU-R39LL</td><td class="m">C3KIVQXECNOCLPKICXE5KCXSIU3PXEQT</td></tr>
+              <tr><td>Natasha</td><td>controller</td><td class="m">natasha@walnut.exam</td><td class="m">TAT7P-249VM-XFM5H</td><td class="m">RHQX7XV7IUOR6ZWVFXLOHHM3IYJSQ3HF</td></tr>
+              <tr><td>Shivam</td><td>command</td><td class="m">shivam@walnut.exam</td><td class="m">RFZ6P-9PFJQ-4M66J</td><td class="m">47RPQVCPTRXFFATN46SH4AWUTORPQBCJ</td></tr>
+              <tr><td>Aman</td><td>command</td><td class="m">aman@walnut.exam</td><td class="m">M4Q9X-WMGJE-99ETU</td><td class="m">PKLMTFDLXHGFMMD2TDHOCOTO6KMAUCTR</td></tr>
+              <tr><td>Dhanashri</td><td>controller</td><td class="m">dhanashri@walnut.exam</td><td class="m">9Q3SH-VSA6F-AKGZK</td><td class="m">2MBIAZYFKRAEMZGXWETMKEUGCJBUIHBU</td></tr>
+              <tr><td>Shalu</td><td>command</td><td class="m">shalu@walnut.exam</td><td class="m">22849-WE3H8-MBTAA</td><td class="m">Z56M67UUMPBJS5ZYH4KF46VA4GUSEOBV</td></tr>
+              <tr><td>Avdhesh</td><td>proctor</td><td class="m">avdhesh@walnut.exam</td><td class="m">MLXDN-XQUH9-KSE8K</td><td class="m">NU47KYBG6MZFMKZ5A3VPEF43P54EVZY7</td></tr>
+              <tr><td>Mayank</td><td>proctor</td><td class="m">mayank@walnut.exam</td><td class="m">6BK4C-7M3G4-AQTZS</td><td class="m">A34PE7YRDBASHAXTND64MD5TG4FT6ROE</td></tr>
+              <tr><td>Sushil</td><td>setter</td><td class="m">sushil@walnut.exam</td><td class="m">CT9AV-S8VW9-42ZB3</td><td class="m">DLBSYBZC2OQ7B2GR3ATN2VYIBBWFBXKW</td></tr>
+              <tr><td>Arsh</td><td>setter</td><td class="m">arsh@walnut.exam</td><td class="m">BGUVT-JNAVU-BP9CT</td><td class="m">BEP3TZAR43M4ZOWORECHHP3KCSDH3KNS</td></tr>
+              <tr><td>Rahul</td><td>setter</td><td class="m">rahul@walnut.exam</td><td class="m">9UXBX-W4M8L-T6CLK</td><td class="m">6CHFVRUOCDOPWVZATYHMA35ZJHQJREN6</td></tr>
+              <tr><td>Rishabh</td><td>setter</td><td class="m">rishabh@walnut.exam</td><td class="m">ZJEZY-4L6LQ-ZPYMV</td><td class="m">URGPLM5TN3IZWDQPUL3OQ42SUABOPUOR</td></tr>
+              <tr><td>Insiya</td><td>setter</td><td class="m">insiya@walnut.exam</td><td class="m">ZN9JG-XARV7-G6L44</td><td class="m">H5LE2GIBHS4IUKQBQZ2C6X3XPDVM44SE</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Controllers and Command and setters sign in at
+          <a class="route" href="https://exams.collegeranger.com/admin/sign-in">/admin/sign-in</a>;
+          proctors at
+          <a class="route" href="https://exams.collegeranger.com/staff/sign-in">/staff/sign-in</a>.
+        </p>
+
+        <h3>Signing in as a candidate</h3>
+        <p>
+          A candidate is asked for a code by SMS, and no SMS provider is connected &mdash; so there
+          is a standing tester code instead. Type it where the six digits are asked for.
+        </p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Enrollment</th><th>Password</th><th>Code</th><th>Expires</th></tr></thead>
+            <tbody>
+              <tr><td class="m">345</td><td class="m">TesterDemo@2026x</td><td class="m">WALNUT-VMS6YZ7G</td><td>10 Sep 2026, 19:53 IST</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          It works for candidates only, never for staff, and it is refused entirely while an exam
+          window is open &mdash; so it can never be the way somebody enters a live paper.
         </p>
 
         <h3>Every account, at a glance</h3>
@@ -569,6 +630,73 @@ set  1  exam 1 · 12 items                        <span class="g">released</span
           One CPU means roughly one to two sign-ins per second, so six hundred candidates take five to
           ten minutes to all get in. Fine for a pilot; worth raising the shape before a full sitting.
         </p>
+      </section>
+
+      <section id="fixed">
+        <h2>Fixed since the bug sheet</h2>
+        <p>
+          Thirteen testers filed against the 9&ndash;10 September round. Most of the sheet came down
+          to two causes.
+        </p>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Reported</th><th>What it actually was</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Study Material, Candidate Registry and PDF upload all returning <b>502 Bad Gateway</b></td>
+                <td>One process. The service behind every <code>/agent/*</code> screen had no startup
+                    entry on this machine, so it had never run once, and its libraries were never
+                    installed. Seven people reported it as three different bugs.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>&ldquo;Logged out at every step&rdquo;, &ldquo;logs out on refresh&rdquo;</td>
+                <td>Not a fault. Signing in ends any other session on the same account, and thirteen
+                    people were sharing six logins &mdash; <b>171</b> sessions ended that way in six
+                    hours. Everyone now has their own account.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>Sign out lands on the student login page</td>
+                <td>Staff were being returned to the candidate door, which asks for an enrollment
+                    number they do not have.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>Search, notifications and help do nothing</td>
+                <td>Correct &mdash; they were buttons with nothing behind them, and the notification
+                    dot showed unread items for a feature that does not exist. Removed until they
+                    are real.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>Phone accepts more than 10 digits; date of birth accepts future dates</td>
+                <td>Both true. Mobile is now exactly ten digits in an Indian series; date of birth
+                    must fall between 10 and 100 years ago.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>Developer text on screen (&ldquo;qbank &middot; GET /questions&rdquo;)</td>
+                <td>Thirteen internal notes were rendering on production screens, including one
+                    describing how the paper-release page fetches its data.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>&mdash; not reported, found while fixing &mdash;</td>
+                <td>The admin door accepted a proctor&rsquo;s <em>correct</em> password and only then
+                    refused the role, so anyone could confirm a staff password was valid without the
+                    second factor. Now indistinguishable from a wrong password.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
+                <td>OTP never arrives</td>
+                <td>True and still true: no SMS provider is connected. Use the tester code above, or
+                    choose <b>Email</b> on the forgotten-password screen, which does send.</td>
+                <td><span class="pill p-warn">worked around</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="open">
