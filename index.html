@@ -687,6 +687,15 @@ set  1  exam 1 · 12 items                        <span class="g">released</span
             <thead><tr><th>Reported</th><th>What it actually was</th><th></th></tr></thead>
             <tbody>
               <tr>
+                <td>Paper does not have the same number of questions as the controller's blueprint (11 Sep)</td>
+                <td>Papers were hand-ticked with no count check (set &ldquo;SEO&rdquo; had 24 MCQ against 20). The Question Sets
+                    screen now has <b>Generate from blueprint</b>: it picks exactly the blueprint's number of approved questions
+                    per type, prices them by the blueprint, and shows <b>Blueprint needs vs In this paper</b>. If the bank is short
+                    it changes nothing and says what is missing. DEMO-FLOW-01 can be generated now; WLN-2026-CS304-S1 needs more
+                    approved questions first (e.g. MSQ: needs 10, 0 approved).</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
                 <td>Marks set by the Exam Coordinator (MCQ 1, Descriptive 5&hellip;) but faculty and papers show different marks (11 Sep)</td>
                 <td>Marks were copied from each question as typed (the form defaulted to 2) and only matched the blueprint in rare cases.
                     Now every question and every paper takes the coordinator&rsquo;s marks for its type; existing questions and draft
