@@ -189,7 +189,7 @@
       Every screen, who may open it, and how a paper travels from an empty exam to a released,
       dual-signed set. Demonstration credentials are included below — this is a seeded pilot system, and they must be rotated before real candidates use it.
     </p>
-    <p class="stamp"><a class="route" href="https://exams.collegeranger.com/">exams.collegeranger.com</a> · last verified 7 September 2026</p>
+    <p class="stamp"><a class="route" href="https://exams.collegeranger.com/">exams.collegeranger.com</a> · last updated 11 September 2026</p>
   </header>
 
   <div class="cols">
@@ -204,7 +204,7 @@
         <li><a href="#admissions">Admissions</a></li>
         <li><a href="#mail">Email</a></li>
         <li><a href="#server">Server</a></li>
-        <li><a href="#fixed">Fixed 10 Sep</a></li>
+        <li><a href="#fixed">Fixed 10&ndash;11 Sep</a></li>
         <li><a href="#open">Outstanding</a></li>
         <li><a href="#never">Do not</a></li>
       </ol>
@@ -456,6 +456,21 @@
         </div>
         <p>Ten proctors are seeded, one for each centre; the remaining eight are held on the server.</p>
 
+        <div class="note">
+          <p class="h">Proctor sign-in works again &mdash; fixed 11 September</p>
+          <p>
+            Until 11 September every proctor was refused with &ldquo;Those credentials are not
+            valid&rdquo;, even with the right password. It was the sign-in page, not the accounts. To
+            sign in now:
+          </p>
+          <ol>
+            <li>Reload the page once with <b>Ctrl+Shift+R</b> (Mac: <b>Cmd+Shift+R</b>) so the browser takes the new version.</li>
+            <li>Use <a class="route" href="https://exams.collegeranger.com/staff/sign-in">/staff/sign-in</a> &mdash; not the admin sign-in, which refuses proctors.</li>
+            <li>Email and password, then the 6-digit code from the authenticator app.</li>
+            <li>If it is refused, check the password and stop after two tries: five failures lock the account for up to 15 minutes, and every retry during the lock extends it.</li>
+          </ol>
+        </div>
+
         <div class="note stop">
           <p class="h">Two things are deliberately not on this page</p>
           <p>
@@ -672,6 +687,14 @@ set  1  exam 1 · 12 items                        <span class="g">released</span
             <thead><tr><th>Reported</th><th>What it actually was</th><th></th></tr></thead>
             <tbody>
               <tr>
+                <td>Proctor logins &ldquo;not valid&rdquo; &mdash; Ahmedabad and Lucknow (11 Sep)</td>
+                <td>The passwords were right. The proctor sign-in page was telling the server it was the
+                    <em>admin</em> door, and the admin door refuses proctors with the same words as a wrong
+                    password. Fixed and checked on the live site for both accounts. Reload the page once;
+                    see <a href="#creds">Proctors &mdash; the hall</a>.</td>
+                <td><span class="pill p-ok">fixed</span></td>
+              </tr>
+              <tr>
                 <td>Study Material, Candidate Registry and PDF upload all returning <b>502 Bad Gateway</b></td>
                 <td>One process. The service behind every <code>/agent/*</code> screen had no startup
                     entry on this machine, so it had never run once, and its libraries were never
@@ -736,7 +759,6 @@ set  1  exam 1 · 12 items                        <span class="g">released</span
             <tbody>
               <tr><td>Screen to create an exam</td><td>The only step in the paper chain with no interface</td><td><span class="pill p-stop">gap</span></td></tr>
               <tr><td>Rotate the SMTP key</td><td>It has been pasted into a chat</td><td><span class="pill p-warn">hygiene</span></td></tr>
-              <tr><td>Push the branch</td><td>59 commits exist on one laptop only</td><td><span class="pill p-warn">risk</span></td></tr>
               <tr><td>An enrolled photograph</td><td>Proctors are asked to compare against one that no service holds</td><td><span class="pill p-warn">gap</span></td></tr>
               <tr><td>Second node for video</td><td>Live invigilation video cannot run on one box</td><td><span class="pill p-warn">blocked</span></td></tr>
               <tr><td>Short link domain</td><td>The SMS invite now spans two segments instead of one</td><td><span class="pill p-warn">cost</span></td></tr>
